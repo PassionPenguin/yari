@@ -38,6 +38,10 @@ export function wrapCodeExamples($: cheerio.CheerioAPI) {
         `<div class='example-header'><span class="language-name">${name}</span></div>`
       ).insertBefore($pre);
     }
+    // Remove the first new line character if exists.
+    if (code.startsWith("\n")) {
+      code = code.slice(1);
+    }
     const $code = $("<code>").text(code);
 
     $pre.empty().append($code);
